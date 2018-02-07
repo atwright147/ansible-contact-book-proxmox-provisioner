@@ -1,15 +1,15 @@
 ---
 - proxmox_kvm:
     api_user: root@pam
-    api_password: gromit1989
+    api_password: REDACTED
     api_host: pve
     vmid: 100
     state: current
 
-- proxmox_kvm:
-    api_user: root@pam
-    api_password: gromit1989
-    api_host: pve
-    name: "test-vm-01"
-    node: pve
-    vmid: 110
+# - proxmox_kvm:
+#     api_user: root@pam
+#     api_password: REDACTED
+#     api_host: pve
+#     name: "test-vm-01"
+#     node: pve
+#     vmid: 110

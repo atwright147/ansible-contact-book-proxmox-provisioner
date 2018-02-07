@@ -1,0 +1,8 @@
+# file: site.yml
+---
+- hosts: all
+  become: yes
+  # vars_files:
+  #   - vars/all.yml
+  roles:
+    - create-vms
