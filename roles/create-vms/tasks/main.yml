@@ -1,60 +1,46 @@
 ---
-- name: "Create Contact Book Orch 01"
-  proxmox:
-    node: pve
-    api_user: root@pam
-    api_password: gromit1989
-    api_host: pve
-    password: password
-    hostname: 'contactbook-orch-01'
-    ostemplate: 'local:vztmpl/ubuntu-16.04-standard_16.04-1_amd64.tar.gz'
-    storage: local-lvm
-    state: present
+- name: Create inventory from list file
+  add_host:
+    name: "{{ item.hostname }}"
+    groups: "{{ item.groups }}"
+  with_items:
+    - "{{ servers }}"
+  tags:
+    - create
+    - start
 
-- name: "Create Contact Book Orch 02"
-  proxmox:
-    node: pve
-    api_user: root@pam
-    api_password: gromit1989
-    api_host: pve
-    password: password
-    hostname: 'contactbook-orch-02'
-    ostemplate: 'local:vztmpl/ubuntu-16.04-standard_16.04-1_amd64.tar.gz'
-    storage: local-lvm
-    state: present
+- name: debug test - hostvars
+  debug: var=hostvars[inventory_hostname]
 
-- name: "Create Contact Book Load Balancer"
-  proxmox:
-    node: pve
-    api_user: root@pam
-    api_password: gromit1989
-    api_host: pve
-    password: password
-    hostname: 'contactbook-orch-lb'
-    ostemplate: 'local:vztmpl/ubuntu-16.04-standard_16.04-1_amd64.tar.gz'
-    storage: local-lvm
-    state: present
+# - name: "Create Contact Book Servers"
+#   proxmox:
+#     node: pve
+#     api_user: root@pam
+#     api_password: gromit1989
+#     api_host: pve
+#     password: password
+#     hostname: "{{ item.hostname }}"
+#     ostemplate: "local:vztmpl/ubuntu-16.04-standard_16.04-1_amd64.tar.gz"
+#     storage: local-lvm
+#     cores: 2
+#     pool: contactbook
+#     netif: '{"net0":"name=eth0,ip=dhcp,ip6=dhcp,bridge=vmbr0"}'
+#     # state: "{{ item.state }}"
+#     state: present
+#   with_items:
+#     - "{{ servers }}"
+#   tags:
+#     - create
 
-- name: "Create Contact Book Database"
-  proxmox:
-    node: pve
-    api_user: root@pam
-    api_password: gromit1989
-    api_host: pve
-    password: password
-    hostname: 'contactbook-db'
-    ostemplate: 'local:vztmpl/ubuntu-16.04-standard_16.04-1_amd64.tar.gz'
-    storage: local-lvm
-    state: present
-
-- name: "Create Contact Book File Store"
-  proxmox:
-    node: pve
-    api_user: root@pam
-    api_password: gromit1989
-    api_host: pve
-    password: password
-    hostname: 'contactbook-files'
-    ostemplate: 'local:vztmpl/ubuntu-16.04-standard_16.04-1_amd64.tar.gz'
-    storage: local-lvm
-    state: present
+# - name: "Start Contact Book Servers"
+#   proxmox:
+#     node: pve
+#     api_user: root@pam
+#     api_password: gromit1989
+#     api_host: pve
+#     hostname: "{{ item.hostname }}"
+#     state: started
+#   with_items:
+#     - "{{ servers }}"
+#   tags:
+#     - start

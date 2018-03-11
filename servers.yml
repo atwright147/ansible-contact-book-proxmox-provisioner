@@ -1,0 +1,6 @@
+---
+- 'contactbook-orch-01'
+- 'contactbook-orch-02'
+- 'contactbook-orch-lb'
+- 'contactbook-db'
+- 'contactbook-files'

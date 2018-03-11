@@ -1,0 +1,14 @@
+---
+server:
+  packages: [git]
+  timezone: UTC
+  region: Europe/London
+  locale: en_GB.UTF-8
+  hostname: hudsonway
+
+servers:
+  - { hostname: contactbook-orch-01, groups: 'orchestration,vms' }
+  - { hostname: contactbook-orch-02, groups: 'orchestration,vms' }
+  - { hostname: contactbook-orch-lb, groups: 'loadbalancer,vms' }
+  - { hostname: contactbook-db, groups: 'database,vms' }
+  - { hostname: contactbook-storage, groups: 'storage,vms' }

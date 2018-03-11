@@ -1,1 +1,5 @@
 *.retry
+*.retry
+/roles/*
+!/roles/server
+notes.md
